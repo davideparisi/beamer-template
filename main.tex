@@ -1,0 +1,130 @@
+\documentclass[trans]{beamer}
+\usepackage{beamerleanprogress}
+%\usepackage[latin1]{inputenc}
+\usepackage{fontspec}
+\usepackage[italian]{babel}
+\usepackage{graphicx}
+\usepackage{minted}
+\usemintedstyle{monokai}
+\usepackage{color,hyperref}
+\usepackage{tikz}
+\usepackage{xcolor,framed}
+\usetikzlibrary{arrows,decorations.pathmorphing,backgrounds,positioning,fit,petri}
+% For title box in title page
+\usepackage[framemethod=tikz]{mdframed}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%			Custom Commands			  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% adds reference to bottom right of corner of a slide
+\usepackage[absolute,overlay]{textpos}
+
+% text references in slide corners
+\newcommand\riferimento[1]{%
+  \begin{textblock*}
+    {\paperwidth}(0pt,0.99
+    \textheight)
+    \raggedleft \tiny{\emph{#1}}\hspace{.5em}
+  \end{textblock*}
+}
+
+% for drawing circles around numbers
+% ex. \circled{1} Add some text here.
+\newcommand*\cerchietto[1]{
+  \tikz[baseline=(char.base)]{
+    \node[shape=circle,draw,inner sep=2pt] (char) {#1};
+  }
+}
+
+% for drawing fractal decoration in title slide
+\usetikzlibrary{decorations.fractals}
+\newcommand*\frattale{
+	\begin{tikzpicture}[decoration=Koch snowflake]
+	\draw decorate{ decorate{ decorate{ decorate{ decorate {(0,-3) -- (3,-3)} }}}};
+	\end{tikzpicture}
+}
+
+% intuitive command for \alert{something}
+\newcommand{\red}[1]{\alert{#1}}
+
+% Displaying emails
+\catcode`\_=11\relax
+\newcommand\email[1]{\_email #1\q_nil}
+\def\_email#1@#2\q_nil{%
+  \href{mailto:#1@#2}{{\emailfont #1\emailampersat #2}}
+}
+
+\newcommand\emailfont{\sffamily}
+\newcommand\emailampersat{{\texorpdfstring{\color{steelblue}}\small@}}
+\catcode`\_=8\relax
+
+% Display a titlebox
+\newmdenv[tikzsetting={draw=none,fill=white,fill opacity=0.7},
+      backgroundcolor=none,leftmargin=0,rightmargin=40,innertopmargin=4pt,roundcorner=10pt]
+      {titleBox}
+
+
+\setsansfont{PT Sans}
+%\setsansfont{Futura}
+
+%% Setting FontAwesome glyphs
+\usepackage{fontawesome}
+\newfontfamily{\FA}{FontAwesome}
+\def\twitter{{\FA \faTwitter}}
+\def\linkedin{{\FA \faLinkedin}}
+\def\mail{{\FA \faEnvelope}}
+
+\defbeamertemplate*{title page}{customized}[1][]
+{
+  \usebeamerfont{title}\inserttitle\par
+  \usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par
+  \bigskip
+  \usebeamerfont{author}\insertauthor\par
+  \usebeamerfont{institute}\insertinstitute\par
+  \usebeamerfont{date}\insertdate\par
+  \usebeamercolor[fg]{titlegraphic}\inserttitlegraphic
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%			Title Page Setup		  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title[Sample]{Sample Presentation}
+\subtitle{a sample presentation}
+\author[D.~Parisi]{Davide Parisi \\
+  \email{\mail~davideparisi@gmail.com} \\
+  \href{http://twitter.com/slevin}{\twitter~slevin}}
+\date{\today}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%			Begin document			  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+% Title Frame
+{
+  \usebackgroundtemplate{\includegraphics[width=1.0\paperwidth,height=1.0\paperheight]{img/bgkk.jpg}}
+  \begin{frame}[plain]
+    \vspace{15em}
+    \begin{titleBox}
+      \maketitle
+    \end{titleBox}
+  \end{frame}
+}
+% \begin{frame}
+% 	\maketitle
+% \end{frame}
+
+% TOC
+\begin{frame}{Sommario}
+	\tableofcontents
+\end{frame}
+
+% Presentation:
+\input{slides}
+
+\end{document}

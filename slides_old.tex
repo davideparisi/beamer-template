@@ -1,0 +1,94 @@
+\section{Premessa}
+
+\begin{frame}{Premessa (1)}
+Una Rete di Petri (Petri Net - PN) è
+\begin{itemize}
+	\item un \alert{modello} astratto e formale
+	\item per la rappresentazione del \alert{comportamento dinamico} di sistemi \alert{discreti}
+	\item che esibiscono attività \alert{asincrone e concorrenti}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Premessa (2)}
+	Molto usate nella modellizzazione di:
+	\begin{itemize}
+		\item Sistemi concorrenti
+		\item Interazione tra sistemi diversi, compresa utente-computer
+		\item Protocolli di comunicazione
+        \item Workflow
+        \item Sistemi complessi
+        \item \dots
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Notazione (1)}
+    Concettualmente una PN è costituita
+    \begin{itemize}
+        \item da un insieme di elementi, detti \alert{posti}, che rappresentano i possibili stati del sistema
+    \end{itemize}
+\end{frame}
+
+\section{Petri Nets}
+
+\begin{frame}{Esempio (1)}
+\begin{center}
+	\begin{tikzpicture}
+		% Styles
+		[
+			every label/.style={red},
+			place/.style={circle,draw=blue!50,fill=blue!20,thick,inner sep=0,minimum size=6mm},
+			transition/.style={rectangle,draw=black!50,fill=black!20,thick,inner sep=0,minimum size=4mm},
+			bend angle=45,
+			entrata/.style={<-,shorten <=1pt,>=stealth',thick},
+			uscita/.style={->,shorten >=1pt,>=stealth',thick}
+		]
+		\node 	[place]	[label=right:$p_0$,]					(p0)								{};
+		\node	[transition] [label=right:$t_0$]				(t0)	[below=of p0]				{}
+			edge [entrata] (p0);
+		\node	[place,tokens=1] [label=below:$p_1$]			(p1)	[below=of t0]				{}
+			edge [entrata] (t0);
+		\node	[transition] [label=left:$t_1$]				(t1)	[below=of p1,left=of p1]	{}
+			edge [uscita,bend left] (p1)
+			edge [entrata] (p1);
+		\node	[transition] [label=right:$t_2$]				(t2)	[below=of p1,right=of p1]	{}
+			edge [entrata] (p1);
+		\node	[place]	[label=right:$p_2$]					(p2)	[below=of p1]				{}
+			edge [entrata] (t1)
+			edge [entrata] (t2);		
+	\end{tikzpicture}
+\end{center}
+\end{frame}
+
+\begin{frame}{A Simple Example}
+\begin{center}
+\begin{tikzpicture}
+	% Styles
+	[
+		every label/.style={red},
+		place/.style={circle,draw=blue!50,fill=blue!20,thick,inner sep=0,minimum size=6mm},
+		transition/.style={rectangle,draw=black!50,fill=black!20,thick,inner sep=0,minimum size=4mm},
+		bend angle=45,
+		entrata/.style={<-,shorten <=1pt,>=stealth',thick},
+		uscita/.style={->,shorten >=1pt,>=stealth',thick}
+	]
+	% Places
+	\node[place,tokens=1] 		(waiting)									{};
+	\node[place]		(critical)			[below=of waiting]		{};
+	\node[place,tokens=2]		(semaphore)			[below=of critical,label=above:$s\le3$]		{};
+	% Transitions
+	\node[transition]			(leave critical)	[right=of critical]		{}
+		edge 	[entrata]				(critical)
+		edge 	[uscita,bend right]	node[auto,swap] {2}		(waiting)
+		edge 	[entrata,bend left]		(semaphore);	
+	\node[transition]	(enter critical)	[left=of critical]		{}
+		edge [uscita]				(critical)
+		edge [entrata,bend left]	(waiting)
+		edge [uscita,bend right]	(semaphore);
+	% Background
+	\begin{pgfonlayer}{background}
+		\node [fill=black!30,fit=(waiting) (critical) (semaphore) (leave critical) (enter critical)] {};
+	\end{pgfonlayer}
+\end{tikzpicture}
+\end{center}
+\end{frame}
+

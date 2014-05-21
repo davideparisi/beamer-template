@@ -1,0 +1,25 @@
+# Compiled Files
+
+main.pdf
+slides.tex
+
+# Editor tmporary files
+
+.*.sw*
+*~
+\#*
+.\#*
+*.orig
+*.rej
+
+# Xelatex temp files
+
+*.aux
+*.log
+*.nav
+*.out
+*.pdf
+*.snm
+*.toc
+*.vrb
+
