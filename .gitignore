@@ -22,4 +22,12 @@ slides.tex
 *.snm
 *.toc
 *.vrb
+*.bbl
+*.thm
+*.run.xml
+*.bcf
+*.bcf
+*.pyg
+
+missfont.log
 
