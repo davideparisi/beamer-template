@@ -3,6 +3,7 @@
 # ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
 
 LATEX:=xelatex
+MD:=slides
 LATEX_OPTIONS:=-shell-escape -8bit
 BIBLIO:=biber
 # ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
@@ -15,11 +16,12 @@ TARGET:=main
 default: main
 
 main:
-	pandoc -t beamer -i slides.md -o slides.tex
+	@pandoc -t beamer -i $(MD).md -o $(MD).tex
 	@$(LATEX) $(LATEX_OPTIONS) $(TARGET)
 	## @$(BIBLIO) $(TARGET)
 	@$(LATEX) $(LATEX_OPTIONS) $(TARGET)
 	## @$(LATEX) $(LATEX_OPTIONS) $(TARGET)
+	@make clean
 
 quick:
 	@$(LATEX) $(LATEX_OPTIONS) $(TARGET)
@@ -41,6 +43,8 @@ clean:
 			$(TARGET).vrb \
 			$(TARGET).bcf \
 			$(TARGET).blg \
+			$(TARGET).pyg \
 			missfont.log \
+			$(MD).tex \
 			*~
 

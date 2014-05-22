@@ -4,12 +4,13 @@
 \usepackage{fontspec}
 \usepackage[italian]{babel}
 \usepackage{graphicx}
+\usepackage{xcolor,framed}
+\usepackage{listings}
 \usepackage{minted}
 \usemintedstyle{monokai}
 \usepackage{color,hyperref}
 \usepackage{tikz}
-\usepackage{xcolor,framed}
-\usetikzlibrary{arrows,decorations.pathmorphing,backgrounds,positioning,fit,petri}
+\usetikzlibrary{arrows,decorations.pathmorphing,backgrounds,positioning,fit,petri,calc,shapes.geometric}
 % For title box in title page
 \usepackage[framemethod=tikz]{mdframed}
 
@@ -17,7 +18,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%			Custom Commands			  %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 % adds reference to bottom right of corner of a slide
 \usepackage[absolute,overlay]{textpos}
 
@@ -57,14 +57,14 @@
 }
 
 \newcommand\emailfont{\sffamily}
-\newcommand\emailampersat{{\texorpdfstring{\color{steelblue}}\small@}}
+\newcommand\emailampersat{{\texorpdfstring{\color{stonered}}\small@}}
 \catcode`\_=8\relax
 
 % Display a titlebox
-\newmdenv[tikzsetting={draw=none,fill=white,fill opacity=0.7},
-      backgroundcolor=none,leftmargin=0,rightmargin=40,innertopmargin=4pt,roundcorner=10pt]
+\newmdenv[tikzsetting={fill=white,fill opacity=0.7},
+      backgroundcolor=none,leftmargin=0,rightmargin=40,innertopmargin=4pt,roundcorner=5pt]
       {titleBox}
-
+\newmdenv[linecolor=stonered,frametitle=infobox,roundcorner=3pt,outerlinewidth=0.2pt]{infobox}
 
 \setsansfont{PT Sans}
 %\setsansfont{Futura}
@@ -78,7 +78,7 @@
 
 \defbeamertemplate*{title page}{customized}[1][]
 {
-  \usebeamerfont{title}\inserttitle\par
+  \usebeamerfont{title}\usebeamercolor[stonered]{title}\inserttitle\par
   \usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par
   \bigskip
   \usebeamerfont{author}\insertauthor\par
@@ -86,7 +86,6 @@
   \usebeamerfont{date}\insertdate\par
   \usebeamercolor[fg]{titlegraphic}\inserttitlegraphic
 }
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%			Title Page Setup		  %%

@@ -32,6 +32,10 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, quae, laboriosam, 
     $\mu_0 - \mu_1 = \phi$
 \end{example}
 
+\begin{infobox}
+    some infos\ldots
+\end{infobox}
+
 # Parte Terza
 
 ## elenco numerato
@@ -49,3 +53,19 @@ $$\sum_{i=1}^n{x_i - x_j}$$
 che si sviluppa poi in
 \pause
 $$\sum_{i=1}^n{\left(\frac{x_i - x_j}{n + (i j)}\right)}$$
+
+## esempio quote
+
+> Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+> Nostrum, a, debitis atque vitae eaque voluptate optio molestias excepturi aut adipisci consectetur officiis autem mollitia recusandae nihil aspernatur eum quod sequi.
+
+
+
+
+
+
+
+
+
+
+
