@@ -5,9 +5,9 @@
 \usepackage[italian]{babel}
 \usepackage{graphicx}
 \usepackage{xcolor,framed}
-\usepackage{listings}
-\usepackage{minted}
-\usemintedstyle{monokai}
+%\usepackage{listings}
+%\usepackage{minted}
+%\usemintedstyle{monokai}
 \usepackage{color,hyperref}
 \usepackage{tikz}
 \usetikzlibrary{arrows,decorations.pathmorphing,backgrounds,positioning,fit,petri,calc,shapes.geometric}
@@ -32,7 +32,7 @@
 
 % for drawing circles around numbers
 % ex. \circled{1} Add some text here.
-\newcommand*\cerchietto[1]{
+\newcommand*\circled[1]{
   \tikz[baseline=(char.base)]{
     \node[shape=circle,draw,inner sep=2pt] (char) {#1};
   }
@@ -55,19 +55,34 @@
 \def\_email#1@#2\q_nil{%
   \href{mailto:#1@#2}{{\emailfont #1\emailampersat #2}}
 }
-
 \newcommand\emailfont{\sffamily}
 \newcommand\emailampersat{{\texorpdfstring{\color{stoneoildark}}\small@}}
 \catcode`\_=8\relax
 
 % Display a titlebox
-\newmdenv[tikzsetting={fill=white,fill opacity=0.7},
-      backgroundcolor=none,leftmargin=0,rightmargin=40,innertopmargin=4pt,roundcorner=5pt]
-      {titleBox}
-\newmdenv[linecolor=stonered,frametitle=infobox,roundcorner=3pt,outerlinewidth=0.2pt]{infobox}
+\newmdenv[
+  tikzsetting={fill=white,fill opacity=0.7},  % set fill color and opacity
+  backgroundcolor=none,
+  leftmargin=0,
+  rightmargin=40,
+  innertopmargin=4pt,
+  roundcorner=5pt % rounded corner
+]{titleBox}
 
-\setsansfont{PT Sans}
-%\setsansfont{Futura}
+% Display an infobox
+\newmdenv[
+  linecolor=stonered,     % box line color
+  frametitle=infobox,     % box title (eg. 'example' or 'Question:')
+  roundcorner=3pt,        % rounded corners
+  outerlinewidth=0.2pt    % box line width
+]{infobox}                % box environment name
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Font & Glyphs Settings
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setsansfont{PT Sans} % Presentation Main Font
+
 
 %% Setting FontAwesome glyphs
 \usepackage{fontawesome}
@@ -76,6 +91,10 @@
 \def\linkedin{{\FA \faLinkedinSign}}
 \def\mail{{\FA \faEnvelope}}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Custom Title Slide
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \defbeamertemplate*{title page}{customized}[1][]
 {
   \usebeamerfont{title}\usebeamercolor[stonered]{title}\inserttitle\par
@@ -87,17 +106,22 @@
   \usebeamercolor[fg]{titlegraphic}\inserttitlegraphic
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%			Title Page Setup		  %%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Title Slide Setup
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title[Petri Nets Malinf]{Rappresentazione mediante rete di petri del flusso delle malattie infettive}
-\subtitle{Organizzare i sistemi concorrenti}
-\author[D.~Parisi]{Davide Parisi \\
-  \email{\mail~davideparisi@gmail.com} \\
-  \href{http://twitter.com/slevin}{\twitter~slevin} \\
-  \href{http://it.linkedin.com/in/parisidavide/}{\linkedin~parisidavide}}
-
+%% Title:
+\title[Short Title]{A very short talk about foo and bar}
+%% Subtitle:
+\subtitle{based on a foobaz point of view}
+%% Author:
+\author[Mr.~FooBaz]{ % Author Short Name
+  Mr.~Foo Bar Baz \\  % Author Name
+  \email{\mail~foo@bar.bz} \\ % Author's email
+  \href{http://twitter.com/fubar}{\twitter~fubar} \\ % Twitter account
+  \href{http://it.linkedin.com/in/fubar/}{\linkedin~fubar} % Linkedin Account
+}
+%% Date:
 \date{
   \vspace{1em}
   \today
@@ -119,16 +143,13 @@
     \end{titleBox}
   \end{frame}
 }
-% \begin{frame}
-% 	\maketitle
-% \end{frame}
 
 % TOC
 \begin{frame}{Sommario}
 	\tableofcontents
 \end{frame}
 
-% Presentation:
+% Presentation (from pandoc compiled markdown)
 \input{slides}
 
 \end{document}
