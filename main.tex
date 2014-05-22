@@ -57,7 +57,7 @@
 }
 
 \newcommand\emailfont{\sffamily}
-\newcommand\emailampersat{{\texorpdfstring{\color{stonered}}\small@}}
+\newcommand\emailampersat{{\texorpdfstring{\color{stoneoildark}}\small@}}
 \catcode`\_=8\relax
 
 % Display a titlebox
@@ -72,8 +72,8 @@
 %% Setting FontAwesome glyphs
 \usepackage{fontawesome}
 \newfontfamily{\FA}{FontAwesome}
-\def\twitter{{\FA \faTwitter}}
-\def\linkedin{{\FA \faLinkedin}}
+\def\twitter{{\FA \faTwitterSign}}
+\def\linkedin{{\FA \faLinkedinSign}}
 \def\mail{{\FA \faEnvelope}}
 
 \defbeamertemplate*{title page}{customized}[1][]
@@ -91,12 +91,17 @@
 %%			Title Page Setup		  %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title[Sample]{Sample Presentation}
-\subtitle{a sample presentation}
+\title[Petri Nets Malinf]{Rappresentazione mediante rete di petri del flusso delle malattie infettive}
+\subtitle{Organizzare i sistemi concorrenti}
 \author[D.~Parisi]{Davide Parisi \\
   \email{\mail~davideparisi@gmail.com} \\
-  \href{http://twitter.com/slevin}{\twitter~slevin}}
-\date{\today}
+  \href{http://twitter.com/slevin}{\twitter~slevin} \\
+  \href{http://it.linkedin.com/in/parisidavide/}{\linkedin~parisidavide}}
+
+\date{
+  \vspace{1em}
+  \today
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%			Begin document			  %%
@@ -108,7 +113,7 @@
 {
   \usebackgroundtemplate{\includegraphics[width=1.0\paperwidth,height=1.0\paperheight]{img/bgkk.jpg}}
   \begin{frame}[plain]
-    \vspace{15em}
+    \vspace{12em}
     \begin{titleBox}
       \maketitle
     \end{titleBox}
